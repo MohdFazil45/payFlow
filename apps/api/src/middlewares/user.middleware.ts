@@ -9,7 +9,8 @@ export const authMiddleware = async (
   try {
     const JWT_SECRET = process.env.JWT_SECRET;
     if (!JWT_SECRET) throw new Error("JWT_SECRET is not set");
-    const token = req.cookies.token;
+
+    const token = req.cookies?.token;
 
     if (!token) {
       return res.status(404).json({
@@ -26,17 +27,16 @@ export const authMiddleware = async (
     }
 
     req.user = {
-      id: decoded._id,
+      _id: decoded._id,
       name: decoded.name,
     };
 
     next();
-
   } catch (error) {
     if (error instanceof jwt.TokenExpiredError) {
-        return res.status(401).json({
-            error:"Token expired"
-        })
+      return res.status(401).json({
+        error: "Token expired",
+      });
     }
 
     if (error instanceof jwt.JsonWebTokenError) {
@@ -44,6 +44,6 @@ export const authMiddleware = async (
     }
 
     console.error("authMiddleware error:", error);
-    return res.status(500).json({ error: "Internal server error" })
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
