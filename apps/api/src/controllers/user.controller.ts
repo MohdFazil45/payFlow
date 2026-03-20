@@ -1,7 +1,7 @@
 import "dotenv/config";
 import type { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import { usersTable } from "@repo/db";
+import { accountTable, usersTable } from "@repo/db";
 import jwt from "jsonwebtoken";
 
 export const register = async (req: Request, res: Response) => {
@@ -31,6 +31,13 @@ export const register = async (req: Request, res: Response) => {
       name: name,
       password: hashedPassword,
     });
+
+    const userId = response._id
+
+    await accountTable.create({
+      userId:userId,
+      balance: 1 + Math.random() * 10000
+    })
 
     res.status(201).json({
       msg: "Users registered succesfully",
