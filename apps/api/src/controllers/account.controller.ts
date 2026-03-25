@@ -1,4 +1,5 @@
 import { accountTable, usersTable } from "@repo/db";
+import { PaymentSchema } from "@repo/zodschema";
 import type { Request, Response } from "express";
 import mongoose from "mongoose";
 
@@ -28,9 +29,18 @@ export const checkBalance = async (req: Request, res: Response) => {
 
 export const transfer = async (req: Request, res: Response) => {
   const session = await mongoose.startSession();
-  console.log("HEre")
+  console.log("HEre");
   session.startTransaction();
-  const { amountSend, receiverNumber } = req.body;
+
+  const safeParsed = PaymentSchema.safeParse(req.body);
+
+  if (!safeParsed.success) {
+    return res.status(404).json({
+      error: "Invalid Inputs",
+    });
+  }
+
+  const { amountSend, receiverNumber } = safeParsed.data;
 
   if (!amountSend || amountSend <= 0 || !receiverNumber) {
     return res.status(400).json({ error: "Invalid input" });

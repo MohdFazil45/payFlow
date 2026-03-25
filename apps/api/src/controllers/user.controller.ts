@@ -3,10 +3,19 @@ import type { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import { accountTable, usersTable } from "@repo/db";
 import jwt from "jsonwebtoken";
+import { CreateUserSchema, LoginSchema } from "@repo/zodschema";
+import { parse } from "dotenv";
 
 export const register = async (req: Request, res: Response) => {
   try {
-    const { number, name, password } = req.body;
+    const parsedData = CreateUserSchema.safeParse(req.body);
+    console.log(parsedData)
+    if (!parsedData.success) {
+      return res.status(404).json({
+        error: "Invalid Input",
+      });
+    }
+    const { number, name, password } = parsedData.data;
 
     const existingUser = await usersTable.findOne({
       number: number,
@@ -32,12 +41,12 @@ export const register = async (req: Request, res: Response) => {
       password: hashedPassword,
     });
 
-    const userId = response._id
+    const userId = response._id;
 
     await accountTable.create({
-      userId:userId,
-      balance: 1 + Math.random() * 10000
-    })
+      userId: userId,
+      balance: 1 + Math.random() * 10000,
+    });
 
     res.status(201).json({
       msg: "Users registered succesfully",
@@ -54,7 +63,15 @@ export const register = async (req: Request, res: Response) => {
 
 export const signin = async (req: Request, res: Response) => {
   try {
-    const { number, password } = req.body;
+    const parsedData = LoginSchema.safeParse(req.body);
+
+    if (!parsedData.success) {
+      return res.status(404).json({
+        error: "Invalid inputs",
+      });
+    }
+
+    const { number, password } = parsedData.data;
 
     const [user] = await usersTable.find({
       number: number,
