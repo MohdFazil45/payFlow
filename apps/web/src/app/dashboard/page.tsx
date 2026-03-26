@@ -1,32 +1,146 @@
 "use client";
-
-import { useDetails } from "@/store/userDetail";
+import { Button } from "@/components/button";
+import { Navbar } from "@/components/navbar";
+import TransactionList from "@/components/transaction";
+import { useDetails } from "@/hooks/useDetails";
+import axios from "axios";
+import { Eye } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
-  const { username, number } = useDetails();
+  const [balance, setBalance] = useState("");
+  const [transaction, setTransactions] = useState([]);
+  const checkBalance = async () => {
+    const res = await axios.get(`${process.env.NEXT_PUBLIC_HTTP_URL}/balance`, {
+      withCredentials: true,
+    });
+
+    setBalance(res.data.balance);
+  };
+
+  useEffect(() => {
+    const getTransactions = async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_HTTP_URL}/transactions`,
+          {
+            withCredentials: true,
+          },
+        );
+
+        setTransactions(response.data.transactions);
+        console.log(response.data.transactions);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getTransactions();
+  }, []);
+
+  const { name, number } = useDetails();
+
   return (
-    <div className="min-h-screen w-full flex gap-4 bg-linear-to-br from-slate-400 via-white/50 to-slate-500 dark:from-slate-800/90 dark:via-black dark:to-slate-900 transition-colors duration-500 p-4">
-      <div className="h-1/2 w-1/2 flex flex-col gap-4 ">
-        <div className="h-1/2 flex flex-col gap-4 p-4 border border-neutral-400 rounded-xl">
-          <div>Account Detail</div>
-          <div>
-            <div>Name</div>
-            <div>Number</div>
-          </div>
-        </div>
-        <div className="h-1/2 flex flex-col gap-4 p-4 border border-neutral-400 rounded-xl">
-          <div>Transactions</div>
-          <div>
-            <div></div>
-            <div>Number</div>
-          </div>
-        </div>
+    <div className="min-h-screen w-full flex flex-col gap-4 bg-linear-to-br from-slate-400 via-white/50 to-slate-500 dark:from-slate-800/90 dark:via-black dark:to-slate-900 transition-colors duration-500 p-4">
+      <div className="-mt-12">
+        <Navbar />
       </div>
-      <div className="h-full w-1/2 border border-neutral-400 rounded-xl ">
-        <div className="flex flex-col gap-4 p-4"></div>
+      <div className="h-full w-full border border-neutral-400 rounded-lg -mt-6">
+        <div className="h-fit w-full border-b p-4">
+          <AccountCard number={number} username={name} />
+        </div>
+        <div className="h-fit w-full border-b p-4">
+          <ActionCard
+            balance={Number(balance).toFixed(2)}
+            checkBalance={checkBalance}
+          />
+          <div className="flex items-center justify-center text-3xl font-bold text-white border-b p-2 mb-4">
+            Transactions
+          </div>
+          <div>
+            <TransactionList transactions={transaction} />
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default Dashboard;
+
+function ActionCard({
+  balance,
+  checkBalance,
+}: {
+  balance: string;
+  checkBalance: () => void;
+}) {
+  const [isHide, setIsHide] = useState(true);
+
+  const hide = () => {
+    setIsHide((prev) => !prev);
+  };
+  return (
+    <div className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-md p-6 shadow-xl">
+      <h2 className="text-2xl font-bold text-white border-b border-white/20 pb-3 mb-5">
+        Quick Actions
+      </h2>
+
+      <div className="flex flex-col gap-4">
+        <Link href="/transfer">
+          <Button children="Transfer Money" size="sm" />
+        </Link>
+
+        <div className="flex flex-col gap-3">
+          <Button children="Check Balance" size="sm" onClick={checkBalance} />
+
+          <div className="rounded-2xl bg-white/10 border border-white/10 p-4">
+            <p className="text-sm text-white/70">Available Balance</p>
+            <div className="flex items-center justify-between">
+              {isHide ? (
+                <p className="text-2xl font-bold text-white">{"₹--:--"}</p>
+              ) : (
+                <p className="text-2xl font-bold text-white">
+                  {balance ? `₹${balance}` : "₹ --"}
+                </p>
+              )}
+              <Eye className="cursor-pointer" onClick={hide} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AccountCard({
+  username,
+  number,
+}: {
+  username: string;
+  number: string;
+}) {
+  return (
+    <div className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-md p-6 shadow-xl">
+      <h2 className="text-2xl font-bold text-white border-b border-white/20 pb-3 mb-5">
+        Account Details
+      </h2>
+
+      <div className="flex items-center gap-4">
+        <div className="h-16 w-16 rounded-full bg-white/20 text-white flex items-center justify-center text-2xl font-bold">
+          {username?.charAt(0)?.toUpperCase() || "U"}
+        </div>
+
+        <div className="space-y-1">
+          <p className="text-white text-xl font-semibold">
+            {username || "No username found"}
+          </p>
+          <p className="text-white/80 text-base">
+            {number ? `+91 ${number}` : "No number found"}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}

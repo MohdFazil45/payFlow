@@ -123,8 +123,6 @@ export const getTransactions = async (req: Request, res: Response) => {
       return res.status(404).json({ error: "No transactions found" });
     }
 
-    console.log(transactions);
-
     const formattedTransactions = transactions.map((tx: any) => {
       const isSender = tx.senderNumber === userNumber;
       return {
@@ -135,18 +133,12 @@ export const getTransactions = async (req: Request, res: Response) => {
         message: isSender ? "Money sent" : "Money received",
         senderNumber: tx.senderNumber,
         recieverNumber: tx.recieverNumber,
+        receiverName: req.user?.name,
         note: tx.note,
       };
     });
 
-    console.log("transactions found:", transactions.length);
-    console.log("sample transaction:", transactions[0]);
-
-    const allTransactions = await transactionTable.find({} as any);
-    console.log(
-      "ALL transactions:",
-      JSON.stringify(allTransactions[0], null, 2),
-    );
+    console.log(formattedTransactions)
 
     res.status(200).json({ transactions: formattedTransactions });
   } catch (error) {

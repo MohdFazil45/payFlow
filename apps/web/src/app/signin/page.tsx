@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "@/components/button";
 import { Input } from "@/components/input";
-import { useDetails } from "@/store/userDetail";
 import { LoginSchema } from "@repo/zodschema";
 import { useForm } from "@tanstack/react-form";
 import axios from "axios";
@@ -9,8 +8,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 
 const Signin = () => {
-    const route = useRouter()
-    let {username,number} = useDetails()
+  const route = useRouter();
   const form = useForm({
     defaultValues: {
       number: "",
@@ -19,24 +17,24 @@ const Signin = () => {
     validators: {
       onChange: LoginSchema,
     },
-    onSubmit:async({value}) => {
-        try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_HTTP_URL}/signin`,{
-                number:value.number,
-                password:value.password
-            },{
-                withCredentials:true
-            })
-            username= response.data.data.name
-            number=response.data.data.number
-            console.log(username)
-            console.log(number)
-            alert("Signin succesfully")
-            route.push("/dashboard")
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    onSubmit: async ({ value }) => {
+      try {
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_HTTP_URL}/signin`,
+          {
+            number: value.number,
+            password: value.password,
+          },
+          {
+            withCredentials: true,
+          },
+        );
+        alert("Signin succesfully");
+        route.push("/dashboard");
+      } catch (error) {
+        console.log(error);
+      }
+    },
   });
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-linear-to-br from-slate-400 via-white/50 to-slate-500 dark:from-slate-800/90 dark:via-black dark:to-slate-900 transition-colors duration-500">

@@ -116,6 +116,26 @@ export const signin = async (req: Request, res: Response) => {
   }
 };
 
+export const user = async (req:Request, res:Response) => {
+  try {
+    const name = req.user?.name
+    const number = req.user?.number
+
+    if (!name || !number ) {
+      return res.status(401).json({
+        error:"data invalid"
+      })
+    }
+
+    res.status(200).json({
+      name:name,
+      number:number
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const updateDetails = async (req: Request, res: Response) => {
   try {
     const { name, password } = req.body;

@@ -1,5 +1,5 @@
 import express from "express"
-import { register, signin, updateDetails, getUserByNumber } from "../controllers/user.controller.ts"
+import { register, signin, updateDetails, getUserByNumber, user } from "../controllers/user.controller.ts"
 import { authMiddleware } from "../middlewares/user.middleware.ts"
 const router = express.Router()
 
@@ -9,6 +9,7 @@ router.post("/signin",signin)
 //* Authenticated Routes
 
 router.put("/update",authMiddleware,updateDetails)
-router.get("/bulk",getUserByNumber)
+router.get("/user",authMiddleware,user)
+router.get("/bulk",authMiddleware,getUserByNumber)
 
 export default router

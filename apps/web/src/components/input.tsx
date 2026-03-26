@@ -1,12 +1,12 @@
 interface Input {
   placeholder: string;
   label: string;
-  id: string;
-  name: string;
-  value: string;
-  onBlur: () => void;
+  id?: string;
+  name?: string;
+  value?: string;
+  onBlur?: () => void;
   onChange: (e:React.ChangeEvent<HTMLInputElement>) => void;
-  type: string;
+  type?: string;
 }
 
 export const Input = ({
@@ -22,9 +22,9 @@ export const Input = ({
   return (
     <>
       <div className="flex items-center justify-center gap-4 ">
-        <label className="text-lg text-black" htmlFor={label}>{label}</label>
+        <label className="text-lg dark:text-white text-black" htmlFor={label}>{label}</label>
         <input
-          className=" w-[20vw] border text-black border-black rounded-lg placeholder:text-neutral-700 p-1"
+          className=" w-[20vw] border dark:bg-white dark:text-black text-black border-black rounded-lg placeholder:text-neutral-700 p-1"
           id={id}
           name={name}
           type={type}
