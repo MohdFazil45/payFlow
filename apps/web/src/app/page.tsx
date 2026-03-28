@@ -25,15 +25,15 @@ export default function Home() {
           ))}
         </div>
         <footer className="flex items-center justify-between w-full p-8 bottom-0 mt-12 xs:mt-10 sm:mt-8 md:mt-8 lg:mt-6 xl:mt-12">
-          <div className="text-lg lg:text-xl xl:text-6xl dark:text-neutral-300 cursor-pointer text-neutral-700">
+          <div className="text-lg lg:text-xl xl:text-4xl dark:text-neutral-300 cursor-pointer text-neutral-700">
             PayFlow
           </div>
-          <div className="flex items-center justify-around w-1/3 text-xs xs:text-xs sm:text-[8px] md:text-xs lg:text-sm lg:flex-row flex-col xl:flex-row xl:text-2xl dark:text-neutral-300 text-neutral-700 ">
+          <div className="flex items-center justify-around w-1/3 text-xs xs:text-xs sm:text-[8px] md:text-xs lg:text-sm lg:flex-row flex-col xl:flex-row xl:text-lg dark:text-neutral-300 text-neutral-700 ">
             <div className="cursor-pointer">Terms and Condition</div>
             <div className="cursor-pointer">Privacy</div>
             <div className="cursor-pointer">Contact</div>
           </div>
-          <div className="sm:text-lg text-lg lg:text-xl xl:text-6xl dark:text-neutral-300 cursor-pointer text-neutral-700">
+          <div className="sm:text-lg text-lg lg:text-xl xl:text-4xl dark:text-neutral-300 cursor-pointer text-neutral-700">
             {" "}
             2026
           </div>

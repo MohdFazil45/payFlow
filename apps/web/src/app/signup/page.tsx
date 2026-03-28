@@ -55,7 +55,7 @@ const Signup = () => {
     <>
       <div className="min-h-screen w-full flex flex-col items-center justify-center bg-linear-to-br from-slate-400 via-white/50 to-slate-500 dark:from-slate-800/90 dark:via-black dark:to-slate-900 transition-colors duration-500">
 
-        <div className="rounded-2xl border border-slate-200/70 dark:border-slate-700/50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl  shadow-2xl px-4 py-8  xl:px-32 xl:py-20">
+        <div className="rounded-2xl border border-slate-200/70 dark:border-slate-700/50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl  shadow-2xl px-4 py-8  xl:px-12 xl:py-8">
 
           <div className="text-center mb-8">
 

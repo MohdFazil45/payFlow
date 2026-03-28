@@ -27,7 +27,7 @@ export const Input = ({
             {label}
           </label>
           <input
-            className="w-fit border dark:bg-white dark:text-black text-black border-black rounded-lg placeholder:text-neutral-700 p-1"
+            className="xl:w-96 border dark:bg-white dark:text-black text-black border-black rounded-lg placeholder:text-neutral-700 p-1"
             id={id}
             name={name}
             type={type}

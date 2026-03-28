@@ -12,7 +12,7 @@ export const Navbar = () => {
     <>
       <div className="h-16 w-full flex items-center justify-between px-4 md:px-8 xl:p-12">
         <Link href={"/"}>
-          <div className="dark:text-white text-black font-bold text-xl md:text-3xl xl:text-5xl">
+          <div className="dark:text-white text-black font-bold text-xl md:text-3xl xl:text-3xl">
             PayFlow
           </div>
         </Link>
