@@ -46,10 +46,9 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen w-full flex flex-col gap-4 bg-linear-to-br from-slate-400 via-white/50 to-slate-500 dark:from-slate-800/90 dark:via-black dark:to-slate-900 transition-colors duration-500 p-4">
-      <div>
-        <Navbar />
-      </div>
+      <div className="mb-20"></div>
       <div className="h-full w-full border border-neutral-400 rounded-lg -mt-6">
+        
         <div className="h-fit w-full border-b p-4">
           <AccountCard number={number} username={name} />
         </div>
@@ -94,7 +93,7 @@ function ActionCard({
         <div className="flex flex-col gap-3">
           <div>
             <div className="flex items-center  justify-center w-full gap-2 lg:hidden xl:hidden">
-              <div >
+              <div>
                 <Link href="/transfer">
                   <Button children="Transfer Money" size="sm" />
                 </Link>
@@ -108,7 +107,7 @@ function ActionCard({
               </div>
             </div>
             <div className="lg:flex xl:flex w-full gap-4 items-center justify-center hidden">
-              <div >
+              <div>
                 <Link href="/transfer">
                   <Button children="Transfer Money" size="lg" />
                 </Link>

@@ -88,11 +88,9 @@ const Transfer = () => {
   return (
     <div className="min-h-screen w-full flex gap-4 bg-linear-to-br from-slate-400 via-white/50 to-slate-500 dark:from-slate-800/90 dark:via-black dark:to-slate-900 transition-colors duration-500 p-4">
       <div className="w-full ">
-        <div className="w-full">
-          <Navbar />
-        </div>
+        <div className="mb-20"></div>
         <div className="flex xl:flex-row lg:flex-row flex-col border-4 dark:border-neutral-500 border-slate-600 rounded-2xl h-fit w-full mt-8">
-           <div className="xl:hidden lg:hidden w-full  h-full p-4">
+          <div className="xl:hidden lg:hidden w-full  h-full p-4">
             <div className="text-2xl font-semibold mb-4">Transfer Money</div>
             <div>
               <div>
@@ -202,10 +200,15 @@ const Transfer = () => {
           </div>
           <div className="xl:w-1/2 lg:w-1/2 w-full  h-full lg:border-r  xl:border-r p-4">
             <div className="mx-auto w-full h-full">
-              <h1 className="text-2xl xl:text-3xl mb-4 font-semibold">Search Recipient</h1>
+              <h1 className="text-2xl xl:text-3xl mb-4 font-semibold">
+                Search Recipient
+              </h1>
               <div>
                 <div className="flex flex-col  justify-center gap-1">
-                  <label htmlFor="Number" className="text-md xl:text-xl font-semibold">
+                  <label
+                    htmlFor="Number"
+                    className="text-md xl:text-xl font-semibold"
+                  >
                     Enter Number
                   </label>
                   <input
@@ -249,7 +252,9 @@ const Transfer = () => {
                           </div>
                         </div>
 
-                        <span className="text-sm xl:text-lg dark:text-white/70 text-neutral-800">Select</span>
+                        <span className="text-sm xl:text-lg dark:text-white/70 text-neutral-800">
+                          Select
+                        </span>
                       </button>
                     ))
                   )}
@@ -258,11 +263,16 @@ const Transfer = () => {
             </div>
           </div>
           <div className="xl:w-1/2 lg:w-1/2 xl:block lg:block hidden h-full lg:border-l  xl:border-l p-4">
-            <div className="text-2xl xl:text-3xl font-semibold mb-4">Transfer Money</div>
+            <div className="text-2xl xl:text-3xl font-semibold mb-4">
+              Transfer Money
+            </div>
             <div>
               <div>
                 <div>
-                  <label htmlFor="text" className="text-md xl:text-xl font-semibold ">
+                  <label
+                    htmlFor="text"
+                    className="text-md xl:text-xl font-semibold "
+                  >
                     Recipient Number
                   </label>
                   <div className="p-2 w-full bg-neutral-100  border-2 border-neutral-500 mt-4 dark:border-slate-300  rounded-lg">
@@ -286,7 +296,7 @@ const Transfer = () => {
                           className="text-red-600  cursor-pointer "
                         >
                           {" "}
-                          <Trash2  className="xl:h-6 xl:w-6"/>
+                          <Trash2 className="xl:h-6 xl:w-6" />
                         </div>
                       </div>
                     ) : (

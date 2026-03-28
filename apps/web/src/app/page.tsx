@@ -13,9 +13,6 @@ export default function Home() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-linear-to-br from-slate-400 via-white/50 to-slate-500 dark:from-slate-800/90 dark:via-black dark:to-slate-900 transition-colors duration-500">
       <main className="flex w-full  flex-col items-center justify-between">
-        <div className="w-full top-0 fixed">
-          <Navbar />
-        </div>
         <div className="mx-auto mt-44 xs:mt-38 sm:mt-36 md:mt-32 lg:mt-28 xl:mt-52 ">
           <Hero />
         </div>
