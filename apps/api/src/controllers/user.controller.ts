@@ -122,6 +122,28 @@ export const signin = async (req: Request, res: Response) => {
   }
 };
 
+export const me = async (req: Request, res: Response) => {
+  try {
+    const token = req.cookies.token;
+
+    if (!token) {
+      return res.status(401).json({
+        error: "Unauthorized",
+      });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+
+    return res.status(200).json({
+      user: decoded,
+    });
+  } catch (error) {
+    return res.status(401).json({
+      error: "Invalid token",
+    });
+  }
+};
+
 export const user = async (req: Request, res: Response) => {
   try {
     const name = req.user?.name;

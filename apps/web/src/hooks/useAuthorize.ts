@@ -1,18 +1,21 @@
-import { useEffect, useState } from "react"
-import Cookies from "js-cookie"
+import { useEffect, useState } from "react";
+import axios from "axios";
 
+export const useAuthorize = () => {
+  const [isAuthorise, setIsAuthorise] = useState(false);
 
-export const useAuthorize = ()=> {
-    const token = Cookies.get('token')
-      const [isAuthorized, setIsAuthorized] = useState(false)
-    
-      useEffect(()=>{
-        if (token) {
-          setIsAuthorized(true)
-        } else {
-          setIsAuthorized(false)
-        }
-      },[token])
+  useEffect(() => {
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/me`, {
+        withCredentials: true,
+      })
+      .then(() => {
+        setIsAuthorise(true);
+      })
+      .catch(() => {
+        setIsAuthorise(false);
+      });
+  }, []);
 
-      return isAuthorized
-}
+  return isAuthorise;
+};
