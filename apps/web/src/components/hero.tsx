@@ -11,7 +11,7 @@ export const Hero = () => {
   return (
     <div className="flex flex-col items-center justify-center mx-auto">
       <div className="flex flex-col items-center justify-center gap-4 text-center max-w-4xl xl:max-w-full">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-[6vw]  dark:text-neutral-300 text-neutral-800 font-bold leading-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[4vw]  dark:text-neutral-300 text-neutral-800 font-bold leading-tight">
           Fast, Secure & Easy Payments
         </h1>
 

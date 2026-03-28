@@ -3,7 +3,8 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "dev": "node --watch ./src/index.ts"
+    "dev": "node --watch ./src/index.ts",
+    "start": "bun run ./src/index.ts"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",

@@ -9,7 +9,7 @@ interface Button {
 export const Button = ({ onClick, children, size,type }: Button) => {
 
   const sizeStyles = {
-    sm: "xl:px-8 xl:py-4 px-3 py-2 text-md font-medium",
+    sm: "xl:px-6 xl:py-3 px-3 py-2 text-md font-medium",
     lg: "xl:px-32 xl:py-6 xl:text-3xl px-12 py-2 text-lg font-semibold",
   };
 
