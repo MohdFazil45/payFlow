@@ -29,11 +29,9 @@ export const checkBalance = async (req: Request, res: Response) => {
 
 export const transfer = async (req: Request, res: Response) => {
   const session = await mongoose.startSession();
-  console.log("HEre");
   session.startTransaction();
 
   const safeParsed = PaymentSchema.safeParse(req.body);
-  console.log(req.body);
   if (!safeParsed.success) {
     return res.status(404).json({
       error: "Invalid Inputs",
@@ -163,7 +161,6 @@ export const getTransactions = async (req: Request, res: Response) => {
       };
     });
 
-    console.log("FORMATTED:", formattedTransactions);
 
     return res.status(200).json({ transactions: formattedTransactions });
   } catch (error) {

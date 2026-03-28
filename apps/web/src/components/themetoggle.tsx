@@ -18,9 +18,9 @@ export const ThemeToggle = () => {
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       >
         {theme === "dark" ? (
-          <Sun className="border-none text-neutral-200" />
+          <Sun className="border-none text-neutral-200  xl:h-10 xl:w-10 xl:font-light " />
         ) : (
-          <Moon className="border-none text-neutral-800" />
+          <Moon className="border-none text-neutral-800 xl:h-10 xl:w-10 xl:font-light" />
         )}
       </button>
     </>

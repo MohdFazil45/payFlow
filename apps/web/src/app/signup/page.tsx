@@ -54,14 +54,19 @@ const Signup = () => {
   return (
     <>
       <div className="min-h-screen w-full flex flex-col items-center justify-center bg-linear-to-br from-slate-400 via-white/50 to-slate-500 dark:from-slate-800/90 dark:via-black dark:to-slate-900 transition-colors duration-500">
-        <div className="w-full max-w-md rounded-2xl border border-slate-200/70 dark:border-slate-700/50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-2xl px-8 py-10">
+
+        <div className="rounded-2xl border border-slate-200/70 dark:border-slate-700/50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl  shadow-2xl px-4 py-8  xl:px-32 xl:py-20">
+
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+
+            <h1 className="text-2xl xl:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
               Create New Account
             </h1>
-            <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
+
+            <p className="text-sm xl:text-lg text-slate-600 dark:text-slate-400 mt-2">
               Sign up to get started with your account.
             </p>
+
           </div>
 
           <form

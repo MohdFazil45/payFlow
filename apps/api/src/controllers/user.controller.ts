@@ -9,7 +9,6 @@ import { parse } from "dotenv";
 export const register = async (req: Request, res: Response) => {
   try {
     const parsedData = CreateUserSchema.safeParse(req.body);
-    console.log(parsedData)
     if (!parsedData.success) {
       return res.status(404).json({
         error: "Invalid Input",

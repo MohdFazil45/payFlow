@@ -10,16 +10,17 @@ export const Hero = () => {
 
   return (
     <div className="flex flex-col items-center justify-center mx-auto">
-      <div className="flex flex-col items-center justify-center gap-4">
-        <h1 className="text-7xl dark:text-neutral-300 text-neutral-800 font-bold text-shadow-2xs/20">
+      <div className="flex flex-col items-center justify-center gap-4 text-center max-w-4xl xl:max-w-full">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-[6vw]  dark:text-neutral-300 text-neutral-800 font-bold leading-tight">
           Fast, Secure & Easy Payments
         </h1>
-        <h5 className="text-lg dark:font-light dark:text-neutral-400 text-neutral-600 font-medium mb-12">
+
+        <h5 className="text-sm sm:text-sm md:text-lg xl:text-3xl dark:font-light dark:text-neutral-400 text-neutral-600 font-medium mt-12 xs:mt-10 sm:mt-8 md:mt-8 lg:mt-6 xl:-mt-4">
           Send, receive and manage your money effortlessly with PayFlow. Built
           for speed, security, and simplicity.
         </h5>
       </div>
-      <div>
+      <div className="mt-4 xs:mt-6 sm:mt-5 md:mt-5 lg:mt-4 xl:mt-8">
         {isAuthorise ? (
           <Link
             href={"/dashboard"}

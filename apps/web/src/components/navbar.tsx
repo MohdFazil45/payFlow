@@ -8,31 +8,27 @@ import { User } from "lucide-react";
 
 export const Navbar = () => {
   const isAuthorise = useAuthorize();
-  const route = useRouter();
-  const login = async () => {
-    try {
-    } catch (error) {}
-  };
   return (
     <>
-      <div className="h-16 w-full flex items-center justify-between px-8 py-16 bg-transparent ">
+      <div className="h-16 w-full flex items-center justify-between px-4 md:px-8 xl:p-12">
         <Link href={"/"}>
-          <div className="dark:text-white text-black font-bold text-3xl">
+          <div className="dark:text-white text-black font-bold text-xl md:text-3xl xl:text-6xl">
             PayFlow
           </div>
         </Link>
-        <div className="flex items-center justify-center gap-4">
+
+        <div className="flex items-center xl:text-xl gap-3 md:gap-4">
           <div>
-            <ThemeToggle />
+            <ThemeToggle/>
           </div>
+
           <div>
             {isAuthorise ? (
-              <User />
+              <User className="border-none dark:text-neutral-300 text-neutral-800 xl:h-10 xl:w-10 xl:font-light"/>
             ) : (
-              <Link
-                href={"/signin"}
-                children={<Button children="Signin" size="sm" />}
-              />
+              <Link href="/signin">
+                <Button size="sm">Signin</Button>
+              </Link>
             )}
           </div>
         </div>

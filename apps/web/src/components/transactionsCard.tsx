@@ -27,7 +27,7 @@ const TransactionCard = ({ transaction }: { transaction: Transaction }) => {
         {/* Left Side */}
         <div className="flex items-center gap-3">
           <div
-            className={`h-12 w-12 rounded-full flex items-center justify-center text-white  font-bold text-lg ${
+            className={`h-12 w-12 xl:h-16 xl:w-16  rounded-full flex items-center justify-center text-white  font-semibold text-lg  xl:text-2xl ${
               isSent ? "bg-orange-500" : "bg-green-500"
             }`}
           >
@@ -35,10 +35,10 @@ const TransactionCard = ({ transaction }: { transaction: Transaction }) => {
           </div>
 
           <div>
-            <h3 className="text-sm sm:text-base font-semibold dark:text-gray-200 text-gray-700">
+            <h3 className="text-sm sm:text-base xl:text-2xl font-semibold dark:text-gray-200 text-gray-700">
               {transaction.displayName}
             </h3>
-            <p className="text-xs sm:text-sm dark:text-gray-300 text-gray-800">
+            <p className="text-xs sm:text-sm xl:text-lg dark:text-gray-300 text-gray-800">
               {transaction.displayNumber}
             </p>
           </div>
@@ -47,24 +47,26 @@ const TransactionCard = ({ transaction }: { transaction: Transaction }) => {
         {/* Right Side */}
         <div className="text-right">
           <span
-            className={`inline-block rounded-full px-3 py-1 text-xs font-medium ${
+            className={`inline-block rounded-full px-3 py-1 text-xs xl:text-lg font-medium ${
               isSent
                 ? "bg-orange-100 text-orange-700"
                 : "bg-green-100 text-green-700"
             }`}
           >
-            {isSent ? "Sent" : "Received"}  
+            {isSent ? "Sent" : "Received"}
           </span>
 
           <p
-            className={`mt-2 text-base sm:text-lg font-bold ${
+            className={`mt-2 text-base sm:text-lg xl:text-2xl font-bold ${
               isSent ? "text-red-500" : "text-green-600"
             }`}
           >
             {isSent ? "-" : "+"}₹{transaction.amount}
           </p>
 
-          <p className="text-xs dark:text-gray-400 text-gray-800 mt-1">{formattedDate}</p>
+          <p className="text-xs xl:text-lg dark:text-gray-400 text-gray-800 mt-1">
+            {formattedDate}
+          </p>
         </div>
       </div>
     </div>

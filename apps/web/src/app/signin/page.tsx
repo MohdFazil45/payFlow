@@ -38,18 +38,17 @@ const Signin = () => {
         } else {
           alert("Something went wrong");
         }
-        ``;
       }
     },
   });
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-linear-to-br from-slate-400 via-white/50 to-slate-500 dark:from-slate-800/90 dark:via-black dark:to-slate-900 transition-colors duration-500">
-      <div className="w-full max-w-md rounded-2xl border border-white/20 dark:border-white/10 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-2xl px-8 py-10 flex flex-col items-center">
+      <div className="w-fit max-w-md rounded-2xl border px-4 py-8  xl:px-32 xl:py-20 border-white/20 dark:border-white/10 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl shadow-2xl flex flex-col items-center">
         <div className="text-center mb-8 w-full">
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
+          <h1 className="text-2xl xl:text-3xl font-bold tracking-tight text-slate-900 dark:text-white">
             Sign in
           </h1>
-          <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">
+          <p className="text-sm xl:text-lg text-slate-600 dark:text-slate-400 mt-2">
             Welcome back! Please login to your account.
           </p>
         </div>

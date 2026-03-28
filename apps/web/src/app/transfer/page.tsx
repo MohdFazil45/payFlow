@@ -30,7 +30,6 @@ const Transfer = () => {
       if (!value.amountSend || Number(value.amountSend) <= 0)
         return alert("Enter a valid amount");
       try {
-        console.log("Here");
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_HTTP_URL}/transfer`,
           {
@@ -89,68 +88,11 @@ const Transfer = () => {
   return (
     <div className="min-h-screen w-full flex gap-4 bg-linear-to-br from-slate-400 via-white/50 to-slate-500 dark:from-slate-800/90 dark:via-black dark:to-slate-900 transition-colors duration-500 p-4">
       <div className="w-full ">
-        <div className="w-full -mt-12">
+        <div className="w-full">
           <Navbar />
         </div>
-        <div className="flex border dark:border-neutral-500 border-neutral-800 rounded-2xl h-fit w-full">
-          <div className="w-1/2 h-full border-r p-4">
-            <div className="mx-auto w-full h-full">
-              <h1 className="text-2xl mb-4 font-semibold">Search Recipient</h1>
-              <div>
-                <div className="flex flex-col  justify-center gap-1">
-                  <label htmlFor="Number" className="text-md font-semibold">
-                    Enter Number
-                  </label>
-                  <input
-                    type="tel"
-                    maxLength={10}
-                    placeholder="Enter Number"
-                    className="p-1 border border-neutral-700 rounded bg-white   text-black focus:outline-none"
-                    onChange={onNumberChange}
-                  />
-                </div>
-              </div>
-              <div>
-                <div className="mt-6 flex flex-col gap-3 max-h-105 overflow-y-auto pr-1">
-                  {searchNumber.trim() === "" ? (
-                    <p className="dark:text-white/80 text-gray-800 text-sm">
-                      Start typing a number to search users
-                    </p>
-                  ) : filteredUsers?.length === 0 ? (
-                    <p className="dark:text-white text-black text-lg font-semibold">
-                      Users not found
-                    </p>
-                  ) : (
-                    filteredUsers?.map((user) => (
-                      <button
-                        key={user.id}
-                        onClick={() => handleSelectUser(user)}
-                        className="flex items-center justify-between cursor-pointer gap-4 rounded-2xl border dark:border-white/10 border-neutral-500 dark:bg-white/10 bg-neutral-300 p-4 text-left hover:bg-white/20 transition"
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className="rounded-full bg-blue-500 font-semibold h-10 w-10 flex items-center justify-center text-white">
-                            {user.name?.charAt(0)?.toUpperCase() || "U"}
-                          </div>
-
-                          <div>
-                            <p className="text-lg font-medium dark:text-white text-neutral-800">
-                              {user.name}
-                            </p>
-                            <p className="text-sm dark:text-white/70 text-neutral-800">
-                              +91 {user.number}
-                            </p>
-                          </div>
-                        </div>
-
-                        <span className="text-sm dark:text-white/70 text-neutral-800">Select</span>
-                      </button>
-                    ))
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="w-1/2 h-full  border-l p-4">
+        <div className="flex xl:flex-row lg:flex-row flex-col border-4 dark:border-neutral-500 border-slate-600 rounded-2xl h-fit w-full mt-8">
+           <div className="xl:hidden lg:hidden w-full  h-full p-4">
             <div className="text-2xl font-semibold mb-4">Transfer Money</div>
             <div>
               <div>
@@ -249,6 +191,171 @@ const Transfer = () => {
                       <button
                         type="submit"
                         className="w-full bg-green-600 cursor-pointer py-2 rounded-lg text-xl font-bold"
+                      >
+                        Transfer
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div className="xl:w-1/2 lg:w-1/2 w-full  h-full lg:border-r  xl:border-r p-4">
+            <div className="mx-auto w-full h-full">
+              <h1 className="text-2xl xl:text-5xl mb-4 font-semibold">Search Recipient</h1>
+              <div>
+                <div className="flex flex-col  justify-center gap-1">
+                  <label htmlFor="Number" className="text-md xl:text-2xl font-semibold">
+                    Enter Number
+                  </label>
+                  <input
+                    type="tel"
+                    maxLength={10}
+                    placeholder="Enter Number"
+                    className="p-1 xl:p-3 border-2 dark:border-slate-300  rounded-lg border-neutral-700 bg-white  xl:text-2xl  text-black focus:outline-none"
+                    onChange={onNumberChange}
+                  />
+                </div>
+              </div>
+              <div>
+                <div className="mt-6 flex flex-col gap-3 max-h-105 overflow-y-auto pr-1">
+                  {searchNumber.trim() === "" ? (
+                    <p className="dark:text-white/80 text-gray-800 text-sm xl:text-xl">
+                      Start typing a number to search users
+                    </p>
+                  ) : filteredUsers?.length === 0 ? (
+                    <p className="dark:text-white text-black text-lg xl:text-xl font-semibold">
+                      Users not found
+                    </p>
+                  ) : (
+                    filteredUsers?.map((user) => (
+                      <button
+                        key={user.id}
+                        onClick={() => handleSelectUser(user)}
+                        className="flex items-center justify-between cursor-pointer gap-4 rounded-2xl border dark:border-white/10 border-neutral-500 dark:bg-white/10 bg-neutral-300 p-4 text-left hover:bg-white/20 transition"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="rounded-full bg-blue-500 xl:h-16 xl:w-16 xl:text-3xl font-semibold h-10 w-10 flex items-center justify-center text-white">
+                            {user.name?.charAt(0)?.toUpperCase() || "U"}
+                          </div>
+
+                          <div>
+                            <p className="text-lg xl:text-2xl font-medium dark:text-white text-neutral-800">
+                              {user.name}
+                            </p>
+                            <p className="text-sm xl:text-xl dark:text-white/70 text-neutral-800">
+                              +91 {user.number}
+                            </p>
+                          </div>
+                        </div>
+
+                        <span className="text-sm xl:text-2xl dark:text-white/70 text-neutral-800">Select</span>
+                      </button>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="xl:w-1/2 lg:w-1/2 xl:block lg:block hidden h-full lg:border-l  xl:border-l p-4">
+            <div className="text-2xl xl:text-5xl font-semibold mb-4">Transfer Money</div>
+            <div>
+              <div>
+                <div>
+                  <label htmlFor="text" className="text-md xl:text-3xl font-semibold ">
+                    Recipient Number
+                  </label>
+                  <div className="py-2 w-full bg-neutral-100  px-2 border-2 border-neutral-500 mt-4 dark:border-slate-300  rounded-lg">
+                    {selectedUser ? (
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-start gap-3">
+                          <div className="h-8 w-8 xl:h-16 xl:w-16 xl:text-3xl text-white flex items-center justify-center font-bold rounded-full bg-blue-500">
+                            {selectedUserName?.charAt(0).toUpperCase()}
+                          </div>
+                          <div className="flex flex-col items-start justify-center">
+                            <p className="text-lg xl:text-3xl text-neutral-600 font-semibold">
+                              {selectedUserName}
+                            </p>
+                            <p className="text-sm xl:text-xl text-neutral-600 font-semibold">
+                              +91 {selectedUserNumber}
+                            </p>
+                          </div>
+                        </div>
+                        <div
+                          onClick={removeUser}
+                          className="text-red-600  cursor-pointer "
+                        >
+                          {" "}
+                          <Trash2  className="xl:h-8 xl:w-8"/>
+                        </div>
+                      </div>
+                    ) : (
+                      <p className="text-neutral-600 text-lg xl:text-2xl font-medium">
+                        First select User
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    form.handleSubmit();
+                  }}
+                >
+                  <div>
+                    <form.Field
+                      name="amountSend"
+                      children={(field) => {
+                        return (
+                          <div className="flex flex-col mb-4 ">
+                            <label
+                              htmlFor="Number"
+                              className="text-md xl:text-2xl font-semibold m-2"
+                            >
+                              Enter Amount
+                            </label>
+                            <input
+                              onBlur={field.handleBlur}
+                              onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>,
+                              ) => field.handleChange(e.target.value)}
+                              value={field.state.value}
+                              type="tel"
+                              maxLength={10}
+                              placeholder="Enter Number"
+                              className="p-1 xl:p-4 border-2 xl:text-2xl border-neutral-500 dark:border-slate-300  rounded-lg bg-white text-black focus:outline-none"
+                            />
+                          </div>
+                        );
+                      }}
+                    />
+                    <form.Field
+                      name="note"
+                      children={(field) => {
+                        return (
+                          <div className="flex flex-col">
+                            <label
+                              htmlFor="text"
+                              className="text-md xl:text-2xl font-semibold m-2"
+                            >
+                              Note(Optional)
+                            </label>
+                            <textarea
+                              onBlur={field.handleBlur}
+                              onChange={(
+                                e: React.ChangeEvent<HTMLTextAreaElement>,
+                              ) => field.handleChange(e.target.value)}
+                              value={field.state.value}
+                              className="bg-white border-2 dark:border-slate-300 border-neutral-500 min-h-36 rounded-lg text-black placeholder:text-black p-2"
+                            ></textarea>
+                          </div>
+                        );
+                      }}
+                    />
+                    <div className="flex items-center justify-center mt-4 w-full">
+                      <button
+                        type="submit"
+                        className="w-full xl:h-18 xl:text-4xl font-semibold bg-green-600 cursor-pointer py-2 rounded-lg text-xl  text-white"
                       >
                         Transfer
                       </button>
