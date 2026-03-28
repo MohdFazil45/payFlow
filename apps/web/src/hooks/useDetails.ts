@@ -8,7 +8,7 @@ export const useDetails = () => {
 
   useEffect(() => {
     const fetchDetails = async () => {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_HTTP_URL}/user`,{
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user`,{
         withCredentials:true
       });
       console.log(response.data)
