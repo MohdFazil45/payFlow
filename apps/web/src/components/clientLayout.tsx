@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Navbar } from "./navbar";
 import { LogoutModal } from "./logout";
+import Cookies from "js-cookie"
 
 export const ClientLayout = ({
   children,
@@ -14,8 +15,8 @@ export const ClientLayout = ({
   const router = useRouter();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    setOpen(false);
+    Cookies.remove('token')
+    setOpen(false)
     router.push("/signin");
   };
 

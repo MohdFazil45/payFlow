@@ -94,20 +94,23 @@ export const signin = async (req: Request, res: Response) => {
       {
         _id: user._id.toString(),
         name: user.name,
-        number:user.number
+        number: user.number,
       },
       process.env.JWT_SECRET!,
       { expiresIn: "7d" },
     );
 
-    res.cookie("token", token);
-
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
     res.status(200).json({
       msg: "Logged In succesfully",
       _id: user._id,
-      data:{
-        name:user.name,
-      }
+      data: {
+        name: user.name,
+      },
     });
   } catch (error) {
     console.error(error);
@@ -115,25 +118,25 @@ export const signin = async (req: Request, res: Response) => {
   }
 };
 
-export const user = async (req:Request, res:Response) => {
+export const user = async (req: Request, res: Response) => {
   try {
-    const name = req.user?.name
-    const number = req.user?.number
+    const name = req.user?.name;
+    const number = req.user?.number;
 
-    if (!name || !number ) {
+    if (!name || !number) {
       return res.status(401).json({
-        error:"data invalid"
-      })
+        error: "data invalid",
+      });
     }
 
     res.status(200).json({
-      name:name,
-      number:number
-    })
+      name: name,
+      number: number,
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 export const updateDetails = async (req: Request, res: Response) => {
   try {
